@@ -1,0 +1,26 @@
+<p-table responsiveLayout="scroll" [value]="lancamentos" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="5">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Pessoa</th>
+      <th>Descrição</th>
+      <th>Vencimento</th>
+      <th>Pagamento</th>
+      <th>Valor</th>
+      <th></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-lancamento>
+    <tr>
+      <td>{{lancamento.pessoa}}</td>
+      <td>{{lancamento.descricao}}</td>
+      <td class="col-data">{{lancamento.dataVencimento | date: 'dd/MM/y'}}</td>
+      <td class="col-data">{{lancamento.dataPagamento | date: 'dd/MM/y'}}</td>
+      <td class="col-valor" [ngStyle]="{color: lancamento.tipo == 'DESPESA' ? 'red' : 'blue'}">{{lancamento.valor | currency: 'BRL':true:'1.2-2'}}</td>
+      <td class="col-acoes">
+        <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+        <button pButton class="ml-1" icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
